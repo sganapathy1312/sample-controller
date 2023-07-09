@@ -42,3 +42,13 @@ type HealthMonitorResourceResult struct {
 	LastObservedUnhealthyTime     metav1.Time     `json:"lastObservedUnhealthy,omitempty"`
 	LastObservedUnhealthyDuration metav1.Duration `json:"lastObservedUnhealthyDuration,omitempty"`
 }
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// DeploymentHealthMonitorList is a list of DeploymentHealthMonitor resources
+type DeploymentHealthMonitorList struct {
+	metav1.TypeMeta `json:",inline"`
+	metav1.ListMeta `json:"metadata"`
+
+	Items []DeploymentHealthMonitor `json:"items"`
+}

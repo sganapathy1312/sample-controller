@@ -19,8 +19,8 @@ limitations under the License.
 package healthmonitor
 
 import (
-	v1alpha1 "confluentinc/sample-controller/pkg/generated/informers/externalversions/healthmonitor/v1alpha1"
-	internalinterfaces "confluentinc/sample-controller/pkg/generated/informers/externalversions/internalinterfaces"
+	v1alpha1 "k8s.io/sample-controller/pkg/generated/informers/externalversions/healthmonitor/v1alpha1"
+	internalinterfaces "k8s.io/sample-controller/pkg/generated/informers/externalversions/internalinterfaces"
 )
 
 // Interface provides access to each of this group's versions.
