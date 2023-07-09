@@ -19,6 +19,10 @@ limitations under the License.
 package externalversions
 
 import (
+	versioned "confluentinc/sample-controller/pkg/generated/clientset/versioned"
+	healthmonitor "confluentinc/sample-controller/pkg/generated/informers/externalversions/healthmonitor"
+	internalinterfaces "confluentinc/sample-controller/pkg/generated/informers/externalversions/internalinterfaces"
+	samplecontroller "confluentinc/sample-controller/pkg/generated/informers/externalversions/samplecontroller"
 	reflect "reflect"
 	sync "sync"
 	time "time"
@@ -27,9 +31,6 @@ import (
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
-	versioned "k8s.io/sample-controller/pkg/generated/clientset/versioned"
-	internalinterfaces "k8s.io/sample-controller/pkg/generated/informers/externalversions/internalinterfaces"
-	samplecontroller "k8s.io/sample-controller/pkg/generated/informers/externalversions/samplecontroller"
 )
 
 // SharedInformerOption defines the functional option type for SharedInformerFactory.
@@ -243,7 +244,12 @@ type SharedInformerFactory interface {
 	// client.
 	InformerFor(obj runtime.Object, newFunc internalinterfaces.NewInformerFunc) cache.SharedIndexInformer
 
+	Healthmonitor() healthmonitor.Interface
 	Samplecontroller() samplecontroller.Interface
+}
+
+func (f *sharedInformerFactory) Healthmonitor() healthmonitor.Interface {
+	return healthmonitor.New(f, f.namespace, f.tweakListOptions)
 }
 
 func (f *sharedInformerFactory) Samplecontroller() samplecontroller.Interface {

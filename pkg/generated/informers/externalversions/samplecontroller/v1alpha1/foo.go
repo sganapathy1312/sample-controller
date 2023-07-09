@@ -19,6 +19,9 @@ limitations under the License.
 package v1alpha1
 
 import (
+	versioned "confluentinc/sample-controller/pkg/generated/clientset/versioned"
+	internalinterfaces "confluentinc/sample-controller/pkg/generated/informers/externalversions/internalinterfaces"
+	v1alpha1 "confluentinc/sample-controller/pkg/generated/listers/samplecontroller/v1alpha1"
 	"context"
 	time "time"
 
@@ -27,9 +30,6 @@ import (
 	watch "k8s.io/apimachinery/pkg/watch"
 	cache "k8s.io/client-go/tools/cache"
 	samplecontrollerv1alpha1 "k8s.io/sample-controller/pkg/apis/samplecontroller/v1alpha1"
-	versioned "k8s.io/sample-controller/pkg/generated/clientset/versioned"
-	internalinterfaces "k8s.io/sample-controller/pkg/generated/informers/externalversions/internalinterfaces"
-	v1alpha1 "k8s.io/sample-controller/pkg/generated/listers/samplecontroller/v1alpha1"
 )
 
 // FooInformer provides access to a shared informer and lister for
